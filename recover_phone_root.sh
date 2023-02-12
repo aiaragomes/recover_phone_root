@@ -8,8 +8,8 @@ cd $1
 echo -n "Do you need to download the zip (y/n)? "
 read -n 1 choice
 echo ""
-if [[ $choice == "y" ]]; then
-  rm lineage*.zip lineage*sha256
+if [[ ${choice,,} == "y" ]]; then
+  rm -f lineage*.zip lineage*sha256
   echo -n "Date of the release (YYYYMMDD)? "
   read -n 8 date
   echo ""
@@ -27,8 +27,8 @@ cd $2
 echo -n "Do you need to get the boot.img (y/n)? "
 read -n 1 choice
 echo ""
-if [[ $choice == "y" ]]; then  
-  rm *.img
+if [[ ${choice,,} == "y" ]]; then  
+  rm -f *.img
   source .venv/bin/activate
   cp $1/*.zip .
   unzip lineage-19.1-$date-nightly-FP3-signed.zip
@@ -36,9 +36,9 @@ if [[ $choice == "y" ]]; then
   deactivate
   cp output/boot.img .
   cp output/vbmeta.img .
-  rm lineage-19.1-$date-nightly-FP3-signed.zip
+  rm -f lineage-19.1-$date-nightly-FP3-signed.zip
   rm -rf META-INF/ __pycache__/ output/
-  rm apex_info.pb care_map.pb payload.bin payload_properties.txt
+  rm -f apex_info.pb care_map.pb payload.bin payload_properties.txt
 fi
 echo ""
 
@@ -50,7 +50,7 @@ echo -n "2) Is rooted USB debugging allowed on your phone (y/n)? "
 read -n 1 choice
 echo ""
 echo "You might need to give permission on your phone..."
-if [[ $choice == "y" ]]; then  
+if [[ ${choice,,} == "y" ]]; then  
   echo ""
   echo "Checking adb..."
   sudo adb kill-server
@@ -70,7 +70,7 @@ echo ""
 echo -n "3) Do you see boot.img in the Download folder (y/n)? "
 read -n 1 choice
 echo ""
-if [[ $choice == "n" ]]; then  
+if [[ ${choice,,} == "n" ]]; then  
   echo "There might be a problem with adb..."
   exit -1
 fi
@@ -81,7 +81,7 @@ echo "4) Reinstall/update the Magisk app from the apk or older version"
 echo -n "Have you done it (y/n)? "
 read -n 1 choice
 echo ""
-if [[ $choice == "n" ]]; then  
+if [[ ${choice,,} == "n" ]]; then  
   echo "You need Magisk to continue..."
   exit -1
 fi
@@ -91,7 +91,7 @@ echo "5) Please go to the Magisk app and patch the new boot image"
 echo -n "Have you patched it (y/n)? "
 read -n 1 choice
 echo ""
-if [[ $choice == "y" ]]; then  
+if [[ ${choice,,} == "y" ]]; then  
         echo -n "What is the code of the patched image (NNNNN_LLLLL)? "
   read -n 11 code
   echo ""
@@ -106,7 +106,7 @@ echo ""
 echo -n "6) Are you in fastboot mode (y/n)? "
 read -n 1 choice
 echo ""
-if [[ $choice == "y" ]]; then  
+if [[ ${choice,,} == "y" ]]; then  
   sudo fastboot flash boot magisk_patched.img
 else
   echo "It is not possible to continue..."
@@ -117,7 +117,7 @@ echo ""
 echo -n "7) Do you want to flash vbmeta (y/n)? "
 read -n 1 choice
 echo ""
-if [[ $choice == "y" ]]; then  
+if [[ ${choice,,} == "y" ]]; then  
   sudo fastboot flash vbmeta --disable-verity --disable-verification vbmeta.img
 fi
 
