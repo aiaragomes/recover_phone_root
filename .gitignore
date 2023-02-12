@@ -4,3 +4,6 @@ payload_dumper/update_metadata_pb2.py
 
 # Virtualenv
 .venv
+
+# Data
+*.img

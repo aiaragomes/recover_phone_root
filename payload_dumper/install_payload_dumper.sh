@@ -29,6 +29,4 @@ if [ ! -f $(which pip) ]; then
   exit 1
 fi
 pip install -r requirements.txt
-echo ""
-echo "Payload dumper successfully installed!"
 
