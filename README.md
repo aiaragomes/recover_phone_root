@@ -1,7 +1,7 @@
 # Recover root on LineageOS
 
 Script that guides you through the process of recovering root on a smartphone
-with *LineageOS* (LOS), rooted with *Magisk*, and with boot ramdisk. This is
+with **LineageOS** (LOS), rooted with **Magisk**, and with boot ramdisk. This is
 useful because root is lost after every LOS update. The script basically
 automates some of the steps of the 
 [Magisk installation guide](https://topjohnwu.github.io/Magisk/install.html),
@@ -9,7 +9,7 @@ which includes getting the `boot.img`, and guides you through the steps that are
 more difficult to automate. You can also use this script if you are rooting your
 phone for the first time. Just make sure that you install the 
 [Magisk app](https://github.com/topjohnwu/Magisk/releases/tag/v25.2) before
-starting. Please read all steps before starting and *proceed at your own risk*.
+starting. Please read all steps before starting and **proceed at your own risk**.
 
 
 ## Requirements
@@ -38,9 +38,10 @@ You can run the following script to get payload dumper:
 
 ``` bash
   $ git clone https://github.com/aiaragomes/recover_phone_root.git
-  $ cd payload_dumper
+  $ cd recover_phone_root/payload_dumper
   $ chmod u+x install_payload_dumper.sh
   $ ./install_payload_dumper.sh
+  $ cd ..
 ```
 
 
@@ -72,12 +73,12 @@ root directory of this repo, you can for instance do the following:
 
 ``` bash
   $ mkdir lineageos
-  $ ./recover_phone_root.sh lineageos payload_dumper
+  $ ./recover_phone_root.sh $(pwd)/lineageos $(pwd)/payload_dumper
 ```
 
 The script will guide you through the necessary steps to recover root.
 You will be asked for some input while the script is running. You need to give
 the correct input to successfully complete the process. Please be mindful that 
-this script will flash a Magisk patched boot image, so proceed at your *own
-risk*. Have a good look at the script to see what it is doing before using it.
+this script will flash a Magisk patched boot image, so proceed at your **own
+risk**. Have a good look at the script to see what it is doing before using it.
 

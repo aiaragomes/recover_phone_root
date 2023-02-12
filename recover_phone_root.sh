@@ -97,6 +97,8 @@ if [[ ${choice,,} == "y" ]]; then
   echo ""
   adb pull /sdcard/Download/magisk_patched-$code.img magisk_patched.img
   adb reboot fastboot
+  echo "Waiting 15 seconds..."
+  sleep 15
 else
   echo "It is not possible to continue..."
   exit -1
@@ -125,10 +127,9 @@ echo ""
 echo "-----> Final steps"
 echo "You can restart your phone now!"
 echo ""
-echo "Recommended final steps:"
+echo "Recommended:"
 echo "- disable USB debugging"
-echo "- hide the Magisk app"
-echo "- uninstall Magisk on Work space / Shelter (if you have it)"
+echo "- hide the Magisk app (if not done yet)"
 echo "- clean up Download dir"
 echo ""
 echo "Done! Enjoy your rooted phone! ;D"
