@@ -30,13 +30,13 @@ echo ""
 if [[ ${choice,,} == "y" ]]; then  
   rm -f *.img
   source .venv/bin/activate
-  cp $1/*.zip .
-  unzip lineage-19.1-$date-nightly-FP3-signed.zip
+  cp $1/lineage*.zip .
+  unzip lineage*.zip
   python payload_dumper.py payload.bin
   deactivate
   cp output/boot.img .
   cp output/vbmeta.img .
-  rm -f lineage-19.1-$date-nightly-FP3-signed.zip
+  rm -f lineage*.zip
   rm -rf META-INF/ __pycache__/ output/
   rm -f apex_info.pb care_map.pb payload.bin payload_properties.txt
 fi
