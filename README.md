@@ -21,7 +21,7 @@ starting. Please read all steps before starting and **proceed at your own risk**
 - [required] A few basic Unix commands: `wget` & `sha256sum`
 - [required] Android tools: `adb` & `fastboot`
 - [required] Payload dumper (see next section)
-- [required] Python 3.6
+- [required] Python 3.7
 - [required] Pip
 - [optional] Pyenv
 - [optional] Virtualenv
