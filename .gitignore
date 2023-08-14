@@ -1,10 +1,3 @@
-# Payload dumper
-payload_dumper/payload_dumper.py
-payload_dumper/update_metadata_pb2.py
-
-# Virtualenv
-.venv
-.python-version
-
 # Data
 *.img
+*.zip

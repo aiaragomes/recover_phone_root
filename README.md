@@ -20,29 +20,8 @@ starting. Please read all steps before starting and **proceed at your own risk**
 - [required] Device with boot ramdisk
 - [required] A few basic Unix commands: `wget` & `sha256sum`
 - [required] Android tools: `adb` & `fastboot`
-- [required] Payload dumper (see next section)
-- [required] Python 3.7
-- [required] Pip
-- [optional] Pyenv
-- [optional] Virtualenv
 
 This script was tested under Linux.
-
-
-## Payload dumper setup
-
-The LOS boot image (`boot.img`) is needed to be able to root the phone with
-Magisk. You can extract it from the LOS installation package using 
-[payload dumper](https://github.com/vm03/payload_dumper). 
-You can run the following script to get payload dumper:
-
-``` bash
-  $ git clone https://github.com/aiaragomes/recover_phone_root.git
-  $ cd recover_phone_root/payload_dumper
-  $ chmod u+x install_payload_dumper.sh
-  $ ./install_payload_dumper.sh
-  $ cd ..
-```
 
 
 ## Usage
@@ -63,17 +42,16 @@ future.
 You can run the script to recover root as following:
 
 ``` bash
-  $ recover_phone_root.sh <los_dir> <los_dumper>
+  $ recover_phone_root.sh <los_dir>
 ```
 
 where `<los_dir>` is the path where you want to store the LineageOS installation
-package and `<los_dumper>` is the path with the python script to extract the
-boot image from the LOS installation package. If you run the script from the
+package and boot and vbmeta images. If you run the script from the
 root directory of this repo, you can for instance do the following:
 
 ``` bash
   $ mkdir lineageos
-  $ ./recover_phone_root.sh $(pwd)/lineageos $(pwd)/payload_dumper
+  $ ./recover_phone_root.sh $(pwd)/lineageos
 ```
 
 The script will guide you through the necessary steps to recover root.

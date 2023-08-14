@@ -1,44 +1,41 @@
 #!/bin/sh
 # Recover root on android smartphone with LineageOS and Magisk
-# Usage: recover_phone_root.sh <los_dir> <los_dumper>
+# Usage: recover_phone_root.sh <los_dir>
 
 # Downloading lineage os
 echo "-----> Downloading LineageOS"
 cd $1
+echo -n "Date of the release (YYYYMMDD)? "
+read -n 8 date
+echo ""
 echo -n "Do you need to download the zip (y/n)? "
 read -n 1 choice
 echo ""
 if [[ ${choice,,} == "y" ]]; then
   rm -f lineage*.zip lineage*sha256
-  echo -n "Date of the release (YYYYMMDD)? "
-  read -n 8 date
-  echo ""
-  wget https://mirrorbits.lineageos.org/full/FP3/$date/lineage-19.1-$date-nightly-FP3-signed.zip
-  wget https://mirrorbits.lineageos.org/full/FP3/$date/lineage-19.1-$date-nightly-FP3-signed.zip?sha256
+  wget https://mirrorbits.lineageos.org/full/FP3/$date/lineage-20.0-$date-nightly-FP3-signed.zip
+  wget https://mirrorbits.lineageos.org/full/FP3/$date/lineage-20.0-$date-nightly-FP3-signed.zip?sha256
   echo ""
   echo "Comparing checksum"
-  sha256sum -c lineage-19.1-$date-nightly-FP3-signed.zip?sha256
+  sha256sum -c lineage-20.0-$date-nightly-FP3-signed.zip?sha256
 fi
 echo ""
 
 # Getting boot.img
 echo "-----> Getting boot.img"
-cd $2
 echo -n "Do you need to get the boot.img (y/n)? "
 read -n 1 choice
 echo ""
 if [[ ${choice,,} == "y" ]]; then  
-  rm -f *.img
-  source .venv/bin/activate
-  cp $1/lineage*.zip .
-  unzip lineage*.zip
-  python payload_dumper.py payload.bin
-  deactivate
-  cp output/boot.img .
-  cp output/vbmeta.img .
-  rm -f lineage*.zip
-  rm -rf META-INF/ __pycache__/ output/
-  rm -f apex_info.pb care_map.pb payload.bin payload_properties.txt
+  rm -f *.img*
+  wget https://mirrorbits.lineageos.org/full/FP3/$date/boot.img
+  wget https://mirrorbits.lineageos.org/full/FP3/$date/boot.img?sha256
+  wget https://mirrorbits.lineageos.org/full/FP3/$date/vbmeta.img
+  wget https://mirrorbits.lineageos.org/full/FP3/$date/vbmeta.img?sha256
+  echo ""
+  echo "Comparing checksum"
+  sha256sum -c boot.img?sha256
+  sha256sum -c vbmeta.img?sha256
 fi
 echo ""
 
